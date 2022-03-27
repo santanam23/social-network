@@ -1,9 +1,13 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-// const validateEmail = function {
-//     const regex =
-// };
+const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+      );
+  };
 
 const UserSchema = new Schema(
   {
@@ -17,8 +21,8 @@ const UserSchema = new Schema(
       type: String,
       required: 'Email Is Required',
       unique: true,
-      validate: [validateEmial],
-      match:
+      validate: [validateEmail],
+      match: [ /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/]
     },
     thoughts: [{
         type: Schema.Types.ObjectId,
@@ -28,25 +32,24 @@ const UserSchema = new Schema(
     friends: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    createdAt: {
+    type: Date,
+    default: Date.now,
+    get: createdAtVal => dateFormat(createdAtVal)
+    }
 },
-    {
-    toJSON: {
-      virtuals: true,
-      getters: true
-    },
-    // prevents virtuals from creating duplicate of _id as `id`
-    id: false
+{
+  toJSON: {
+    getters: true
   }
+}
 );
 
-// Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
+// Create a virtual called friendCount that retrieves the length of the user's friends array field on query
 UserSchema.virtual('friendCount').get(function() {
-  return this.thoughts.reduce(
-    (total, comment) => total + comment.replies.length + 1,
-    0
-  );
-});
+    return this.friends.length;
+  });
 
 const User = model('User', UserSchema);
 
