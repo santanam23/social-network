@@ -7,16 +7,19 @@ const {
 } = require('../../controllers/thought-controller');
 
 // /api/thoughts/<userId>
-router.route('/:userId').post(addThought);
-router.route('/:userId').delete(removeThought);
-
-// /api/thoughts/:thoughtId/reactions
 router
-  .route('/:thoughtId/:reactionId')
-  .put(addReaction)
-  .delete(removeReaction);
+    .route('/:userId')
+    .post(addThought);
 
-// // /api/comments/<pizzaId>/<commentId>/<replyId>
-// router.route('/:pizzaId/:commentId/:replyId').delete(removeReply);
+
+// /api/:userId/:thoughtId/
+router
+  .route('/:userId/:thoughtId')
+  .put(addReaction)
+  .delete(removeThought);
+// /api/:userId/:thoughtId/reaction
+router
+    .route('/:userid/:thoughtId/:reaction')
+    .delete(removeReaction)
 
 module.exports = router;
