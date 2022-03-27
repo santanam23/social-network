@@ -1,7 +1,36 @@
-const { User, Thought } = require('../models');
+const { Thought, User } = require('../models');
 
 const thoughtController = {
-  // add comment to pizza
+  getAllThoughts(req, res) {
+    Thought.find({})
+    .populate({
+      path: 'thoughts',
+      select: '-__v'
+    })
+    .select('-__v')
+    .sort({ _id: -1 })
+    .then(dbThoughtData => res.json(dbThoughtData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err)
+    });
+  },
+// get thought by ID 
+getThoughtById({ params }, res) {
+  Thought.findOne({ _id: params.id})
+    .populate({
+    path: 'thoughts',
+    select: '-__v'
+    })
+    .select('-__v')
+    .sort({ _id: -1 })
+    .then(dbThoughtData => res.json(dbThoughtData))
+    .catch( err => {
+      console.log(err);
+      res.status(500).json(err)
+    })
+},  
+  // add thought to user
   addThought({ params, body }, res) {
     console.log(body);
     Thought.create(body)
