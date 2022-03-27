@@ -2,7 +2,7 @@ const { User, Thought } = require('../models');
 
 const userController = {
   // the functions will go in here as methods
-  getAllUser(req, res) {
+  getAllUsers(req, res) {
       User.find({})
       .then(dbUserData => res.json(dbUserData))
       .catch(err => {
@@ -75,7 +75,6 @@ const userController = {
             .catch(err => res.json(err));
      },
      // delete friend
-     // remove comment
     deleteFriend({ params }, res) {
     User.findOneAndDelete({ _id: params.friendId })
       .then(deletedFriend => {
