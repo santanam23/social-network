@@ -1,6 +1,10 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
+// const validateEmail = function {
+//     const regex =
+// };
+
 const UserSchema = new Schema(
   {
     username: {
@@ -9,23 +13,24 @@ const UserSchema = new Schema(
       require: true,
       trim: true
     },
-    ElementInternals: {
+    email: {
       type: String,
-      required: true,
-      unique: true
+      required: 'Email Is Required',
+      unique: true,
+      validate: [validateEmial],
+      match:
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: createdAtVal => dateFormat(createdAtVal)
-    },
-    thoughts: {
-
-    },
-    friends: {
-
-    },
-  {
+    thoughts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Thought'
+    }
+],
+    friends: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }]
+},
+    {
     toJSON: {
       virtuals: true,
       getters: true
@@ -35,9 +40,9 @@ const UserSchema = new Schema(
   }
 );
 
-// get total count of comments and replies on retrieval
-PizzaSchema.virtual('commentCount').get(function() {
-  return this.comments.reduce(
+// Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
+UserSchema.virtual('friendCount').get(function() {
+  return this.thoughts.reduce(
     (total, comment) => total + comment.replies.length + 1,
     0
   );
