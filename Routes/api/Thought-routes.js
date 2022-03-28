@@ -15,10 +15,8 @@ router
     .get(getAllThoughts);
 
 router
-  .get(getThoughtById);
-// /api/:thoughtId/
-router
-  .route(':thoughtId/reactions')
+  .route('/:id')
+  .get(getThoughtById)
   .put(addReaction)
   .delete(deleteThought);
 // /api/:userId/:thoughtId/reaction
