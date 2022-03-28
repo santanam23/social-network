@@ -15,6 +15,7 @@ router
     .get(getAllThoughts);
 
     router
+    .route('/:id')
     .get(getThoughtById);
   // /api/:thoughtId/
   router
