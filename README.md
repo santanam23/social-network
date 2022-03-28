@@ -1,7 +1,7 @@
 # Social Network API
   
   ## Description 
-  This project focused on a social media API, which creates users, thoughts, and reactions.
+  This project builds an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. We will also use Express.js for routing, a MongoDB database, and the Mongoose ODM
   ## Table of Contents
   * [Installation](#installation)
 

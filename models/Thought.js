@@ -9,7 +9,9 @@ const ReactionSchema = new Schema(
       default: () => new Types.ObjectId()
     },
     reactionBody: {
-      type: String
+      type: String,
+      trim:true,
+      maxlength: 280
     },
     username: {
       type: String,
@@ -42,7 +44,8 @@ const ThoughtSchema = new Schema(
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        ref: 'User'
     },
     // use ReplySchema to validate data for a reply
     reactions: [ReactionSchema]
