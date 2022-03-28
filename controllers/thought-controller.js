@@ -3,10 +3,10 @@ const { Thought, User } = require('../models');
 const thoughtController = {
   getAllThoughts(req, res) {
     Thought.find({})
-    .populate({
-      path: 'thoughts',
-      select: '-__v'
-    })
+    // .populate({
+    //   path: 'thoughts',
+    //   select: '-__v'
+    // })
     .select('-__v')
     .sort({ _id: -1 })
     .then(dbThoughtData => res.json(dbThoughtData))
@@ -18,10 +18,10 @@ const thoughtController = {
 // get thought by ID 
 getThoughtById({ params }, res) {
   Thought.findOne({ _id: params.id})
-    .populate({
-    path: 'thoughts',
-    select: '-__v'
-    })
+    // .populate({
+    // path: 'thoughts',
+    // select: '-__v'
+    // })
     .select('-__v')
     .sort({ _id: -1 })
     .then(dbThoughtData => res.json(dbThoughtData))
@@ -66,7 +66,7 @@ getThoughtById({ params }, res) {
 
   // delete thought
   deleteThought({ params }, res) {
-    Thought.findOneAndDelete({ _id: params.id })
+    Thought.findOneAndDelete({ _id: params.thoughtId })
       .then(deletedThought => {
         if (!deletedThought) {
           return res.status(404).json({ message: 'No thought with this id!' });

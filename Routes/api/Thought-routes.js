@@ -14,11 +14,13 @@ router
     .post(createThought)
     .get(getAllThoughts);
 
-router
-  .route('/:id')
-  .get(getThoughtById)
-  .put(addReaction)
-  .delete(deleteThought);
+    router
+    .get(getThoughtById);
+  // /api/:thoughtId/
+  router
+    .route(':thoughtId/reactions')
+    .put(addReaction)
+    .delete(deleteThought);
 // /api/thoughts/:thoughtId/reactions
 router
     .route('/:thoughtId/reactions/:reactionId')
