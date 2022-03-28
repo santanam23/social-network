@@ -19,7 +19,7 @@ router
   .get(getThoughtById)
   .put(addReaction)
   .delete(deleteThought);
-// /api/:userId/:thoughtId/reaction
+// /api/thoughts/:thoughtId/reactions
 router
     .route('/:thoughtId/reactions/:reactionId')
     .delete(removeReaction)

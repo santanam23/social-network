@@ -25,7 +25,7 @@
   This project is license under MIT
 
   ## Screen-Record
-  
+  Link: https://watch.screencastify.com/v/ntM8k1NpUHbpuCASdEZ1
 
   ## Tests
   Use Insomnia or MongoDB to test the routes
