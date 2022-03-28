@@ -9,7 +9,7 @@
 
   * [License](#license)
 
-  * [Contributing](#contributing)
+  * [Video](#Screen-Record)
 
   * [Tests](#tests)
   
@@ -24,11 +24,11 @@
   ## License & Copyright
   This project is license under MIT
 
-  ## Contributing 
+  ## Screen-Record
   
 
   ## Tests
-  no
+  Use Insomnia or MongoDB to test the routes
   
   ## Questions
   If you have any questions about this projects, please contact me directly at miriam.steph.santana@gmail.com. You can view more of my projects at https://github.com/santanam23.

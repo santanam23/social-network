@@ -35,6 +35,7 @@ const ThoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
+      trim: true,
       maxlength: 280
     },
     createdAt: {
@@ -45,6 +46,7 @@ const ThoughtSchema = new Schema(
     username: {
         type: String,
         required: true,
+        trim: true,
         ref: 'User'
     },
     // use ReplySchema to validate data for a reply
