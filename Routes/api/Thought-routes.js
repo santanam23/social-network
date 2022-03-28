@@ -9,7 +9,7 @@ const {
 
 // /api/thoughts/<userId>
 router
-    .route('/:userId')
+    .route('/')
     .post(addThought)
     .get(getAllThoughts);
 
@@ -21,7 +21,7 @@ router
   .delete(removeThought);
 // /api/:userId/:thoughtId/reaction
 router
-    .route('/:userid/:thoughtId/:reaction')
+    .route('/:userId/:thoughtId/:reaction')
     .delete(removeReaction)
 
 module.exports = router;
