@@ -31,12 +31,12 @@ getThoughtById({ params }, res) {
     })
 },  
   // add thought to user
-  createThought({ params, body }, res) {
+  createThought({ body }, res) {
     console.log(body);
     Thought.create(body)
       .then(({ _id }) => {
         return User.findOneAndUpdate(
-          { _id: params.userId },
+          { _id: body.user_id },
           { $push: { thoughts: _id } },
           { new: true }
         );
